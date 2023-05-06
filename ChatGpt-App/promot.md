@@ -1,0 +1,3 @@
+1 gril, student,sailor suit, short hair, cute smile, loli(masterpiece, best quality:1.2), (ultra detailed), (illustration), (distinct_image), (intricate_details), (delicate illustration)
+
+ (worst quality:1.4), (low quality:1.4), EasyNegative, (multiple Views:1.5), (multiple girls:1.5), (extra hands, extra fingers, extra arms, extra legs), cropped hands, extra digit, fewer digit, (bad hands:1.5), (bad antomy:1.5), (fused anatomy), (blurry:1.3), (artist name:1.5), (censored:1.4), (watermark:1.5), (text:1.5), (signature:1.5), (4 fingers, 3 fingers, 2 fingers, 3 legs, 4 legs, 3 hands, 4hands), (fewer than 5 fingers)

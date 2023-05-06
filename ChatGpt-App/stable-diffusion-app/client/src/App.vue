@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <h1>Website Idea Generator</h1>
+    <h1>Stable-Diffusion Generator</h1>
     <form @submit.prevent="handleSubmit">
       <label for="description">Enter the description</label>
       <textarea
@@ -10,17 +10,15 @@
         v-model="description"
       ></textarea>
       <button type="submit">GENERATE</button>
-    </form>
-
-    <div v-if="loading" className='loading'>
+      <div v-if="loading" className='loading'>
           <h1>Loading, please wait...</h1>
-    </div>
+      </div>
+    </form>
 
     <div class="result-container">
       <div v-if="result.length > 0">
         <div v-for="(item, index) in result" :key="index">
           <img :src="'data:image/png;base64,' + item.logoImage" :alt="item.domainName" class="image" />
-          <p>Domain: {{ item.domainName }}</p>
         </div>
       </div>
     </div>  
@@ -47,10 +45,11 @@ const sendDescription = async function() {
           },
       });
       const res = await request.json();
-      console.log(res);
       if (res.result) {
         result.value = res.result
       }
+      loading.value = false;
+      description.value = '';
   } catch (err) {
       console.error(err);
   }
@@ -60,8 +59,6 @@ const handleSubmit = () => {
   console.log({ description: description.value });
   loading.value = true;
   sendDescription();
-  loading.value = false;
-  description.value = '';
 };
 </script>
 
