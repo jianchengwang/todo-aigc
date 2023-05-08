@@ -6,7 +6,7 @@ const app = express()
 const port = 9000
 
 app.use('/', createProxyMiddleware({
-  target: 'https://api.openai.com',
+  target: 'https://chat.openai.com',
   changeOrigin: true,
   onProxyRes: function (proxyRes, req, res) {
     proxyRes.headers['Access-Control-Allow-Origin'] = '*';
