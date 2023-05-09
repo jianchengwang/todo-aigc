@@ -1,0 +1,71 @@
+<!--index.wxml-->
+<view>
+  <van-tabs>
+    <van-tab name="cartoon" title="二次元">
+      <div class="image-list">
+          <van-image 
+          lazy-load
+          width="9rem"
+          height="9rem" 
+          fit="contain"
+          wx:for="{{ 4 }}" 
+          wx:for-item="index"
+          src="https://dy.lixiaoqian.com/img/016{{index}}.jpg"
+        />
+        <van-image 
+          lazy-load
+          width="9rem"
+          height="9rem" 
+          fit="contain"
+          wx:for="{{ 10 }}" 
+          wx:for-item="index"
+          src="https://dy.lixiaoqian.com/img/015{{index}}.jpg" 
+          />
+      </div>
+    </van-tab>
+    <van-tab name="chibi" title="Q版">
+      <div class="image-list">
+          <van-image
+          lazy-load
+          width="9rem"
+          height="9rem" 
+          fit="contain"
+          wx:for="{{ 10 }}" 
+          wx:for-item="index"
+          src="https://dy.lixiaoqian.com/img/014{{index}}.jpg"
+        />
+        <van-image
+          lazy-load
+          width="9rem"
+          height="9rem" 
+          fit="contain"
+          wx:for="{{ 10 }}" 
+          wx:for-item="index"
+          src="https://dy.lixiaoqian.com/img/013{{index}}.jpg"
+        />
+      </div>
+    </van-tab>
+    <van-tab name="chibi" title="古风">
+      <div class="image-list">
+          <van-image
+          lazy-load
+          width="9rem"
+          height="9rem" 
+          fit="contain"
+          wx:for="{{ 10 }}" 
+          wx:for-item="index"
+          src="https://dy.lixiaoqian.com/img/012{{index}}.jpg"
+        />
+        <van-image
+          lazy-load
+          width="9rem"
+          height="9rem" 
+          fit="contain"
+          wx:for="{{ 10 }}" 
+          wx:for-item="index"
+          src="https://dy.lixiaoqian.com/img/011{{index}}.jpg"
+        />
+      </div>
+    </van-tab>
+  </van-tabs>
+</view>

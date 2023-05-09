@@ -1,0 +1,58 @@
+<!--pages/gc/index.wxml-->
+<div class="container">
+  <van-cell-group title="小主，请施加咒语">
+    <van-field
+      model:value="{{ text2ImageParams.prompt }}"
+      clearable
+      type="textarea"
+      maxlength="300"
+      autosize
+      show-word-limit
+    />
+    <van-collapse value="{{ activeNames }}"   bind:change="onChange">
+        <van-collapse-item title="附加配置" name="extendConfig">
+          <van-field
+            model:value="{{ text2ImageParams.width }}"
+            clearable
+            label="宽度"
+          />
+          <van-field
+            model:value="{{ text2ImageParams.height }}"
+            clearable
+            label="高度"
+          />
+          <van-field
+            model:value="{{ text2ImageParams.steps }}"
+            clearable
+            label="步数"
+          />
+          <van-field
+            model:value="{{ text2ImageParams.seed }}"
+            clearable
+            label="种子变量"
+          />
+          <van-field
+            model:value="{{ text2ImageParams.batch_size }}"
+            clearable
+            label="生成数量"
+          />
+        </van-collapse-item>
+      </van-collapse>
+  </van-cell-group>
+  <van-button type="info" block bind:click="onSubmit">巴拉巴拉小魔仙施法</van-button>
+  <div class="result-container">
+    <van-loading wx:if="{{loading}}" />
+    <div class="image-list" wx:if="{{result.images.length}}">
+      <van-image
+        lazy-load
+        width="9rem"
+        height="9rem" 
+        fit="contain"
+        wx:for="{{ result.images }}"
+        src="data:image/png;base64,{{item}}"
+      />
+    </div>
+    <van-divider />
+  </div>
+
+</div>
