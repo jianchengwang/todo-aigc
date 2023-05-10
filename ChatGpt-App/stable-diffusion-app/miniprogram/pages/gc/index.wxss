@@ -6,6 +6,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0.8rem;
-  margin-bottom: 4rem;
+  margin: 1rem;
+  margin-bottom: 3rem;
 }

@@ -6,16 +6,40 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const PORT = 4000;
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+app.use(express.json({limit: '50mb'}));
 app.use(cors());
 
 import { ChatGPTUnofficialProxyAPI } from "chatgpt";
 import axios from 'axios'
 
-app.post("/api/text2Image", async (req, res) => {
-  const result = await sf_text2Image(req.body);
+app.get("/sdapi/v1/sd_models", async (req, res) => {
+  const result = await sd_models();
+  //👇🏻 return the result as a response
+  res.json({ message: "Retrieved successfully!", result: result });
+});
+
+app.get("/sdapi/v1/options", async (req, res) => {
+  const result = await sd_options_get(req.body);
+  //👇🏻 return the result as a response
+  res.json({ message: "Retrieved successfully!", result: result });
+});
+
+app.post("/sdapi/v1/options", async (req, res) => {
+  const result = await sd_options_post(req.body);
+  //👇🏻 return the result as a response
+  res.json({ message: "Retrieved successfully!", result: result });
+});
+
+
+app.post("/sdapi/v1/text2image", async (req, res) => {
+  const result = await sd_text2Image(req.body);
+  //👇🏻 return the result as a response
+  res.json({ message: "Retrieved successfully!", result: result });
+});
+
+app.post("/sdapi/v1/image2image", async (req, res) => {
+  const result = await sd_image2Image(req.body);
   //👇🏻 return the result as a response
   res.json({ message: "Retrieved successfully!", result: result });
 });
@@ -33,11 +57,50 @@ app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });
 
-async function sf_text2Image(reqBody) {
+async function sd_models() {
   try {
-    reqBody.prompt = reqBody.prompt + ",(masterpiece, best quality:1.2), (ultra detailed), (illustration), (distinct_image), (intricate_details), (delicate illustration)"
-    reqBody.negative_prompt = reqBody.negative_prompt + ",nsfw,(worst quality:1.4), (low quality:1.4), EasyNegative, (multiple Views:1.5), (multiple girls:1.5), (extra hands, extra fingers, extra arms, extra legs), cropped hands, extra digit, fewer digit, (bad hands:1.5), (bad antomy:1.5), (fused anatomy), (blurry:1.3), (artist name:1.5), (censored:1.4), (watermark:1.5), (text:1.5), (signature:1.5), (4 fingers, 3 fingers, 2 fingers, 3 legs, 4 legs, 3 hands, 4hands), (fewer than 5 fingers)"
+    const request = await axios.get('http://101.34.12.71:7861/sdapi/v1/sd-models')
+    let result = await request.data
+    return result
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+async function sd_options_post(reqBody) {
+  try {
+    const request = await axios.post('http://101.34.12.71:7861/sdapi/v1/options', reqBody)
+    let result = await request.data
+    return result
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+async function sd_options_get() {
+  try {
+    const request = await axios.get('http://101.34.12.71:7861/sdapi/v1/options')
+    let result = await request.data
+    return result
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+
+async function sd_text2Image(reqBody) {
+  try {
     const request = await axios.post('http://101.34.12.71:7861/sdapi/v1/txt2img', reqBody)
+    let result = await request.data
+    return result
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+async function sd_image2Image(reqBody) {
+  try {
+    const request = await axios.post('http://101.34.12.71:7861/sdapi/v1/img2img', reqBody)
     let result = await request.data
     return result
   } catch (error) {
@@ -55,7 +118,7 @@ async function chatGpt_second(prompt, conversationId, parentMessageId) {
       // });
       // https://chat.openai.com/api/auth/session
       const chatgptApi = new ChatGPTUnofficialProxyAPI({
-        accessToken: '',        
+        accessToken: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik1UaEVOVUpHTkVNMVFURTRNMEZCTWpkQ05UZzVNRFUxUlRVd1FVSkRNRU13UmtGRVFrRXpSZyJ9.eyJodHRwczovL2FwaS5vcGVuYWkuY29tL3Byb2ZpbGUiOnsiZW1haWwiOiJqaWFuY2hlbmd3YW5nODBAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWV9LCJodHRwczovL2FwaS5vcGVuYWkuY29tL2F1dGgiOnsidXNlcl9pZCI6InVzZXItM3lzc05pSGdsOU4xelFlVTEyTjMwVVVXIn0sImlzcyI6Imh0dHBzOi8vYXV0aDAub3BlbmFpLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDExNTU5MTIwNjgyODQ4ODg5MDc5NiIsImF1ZCI6WyJodHRwczovL2FwaS5vcGVuYWkuY29tL3YxIiwiaHR0cHM6Ly9vcGVuYWkub3BlbmFpLmF1dGgwYXBwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2ODI1OTI3NTQsImV4cCI6MTY4MzgwMjM1NCwiYXpwIjoiVGRKSWNiZTE2V29USHROOTVueXl3aDVFNHlPbzZJdEciLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIG1vZGVsLnJlYWQgbW9kZWwucmVxdWVzdCBvcmdhbml6YXRpb24ucmVhZCBvZmZsaW5lX2FjY2VzcyJ9.pKiJxl53nsjiSNbhaDlWj8wkuuCtNXcI9-wJSHte6EX7gTL3Y8sOKGgr5mKFiuHxxjvSgoDPDncyK2HiVBZjR6FteYj2gJ6ulXXE7p-1tlEDb6HD1ULWSbu8zqbt-QtKtoKbEyRwtbrj_Iv2dUXbUNimN8WxkU2SWgRMsMoqrRuHzeCJrU4ywrmpXCivYe1MvOuHoRewAYn2GsTAzYq_Cc8vEFKGWKQYbj0UZZiiwxeBCuxJ2Xs0Yk4aOmVWDP_rywXFHjV45kHjLt8PrHYf7mLZibrJOD1MD9B_37tVL0WWu4jVy8Qx7Y3X4zkENqVNYFPi6s4iu5AafpGXfKeVXA',        
         apiReverseProxyUrl: 'https://api.pawan.krd/backend-api/conversation',
       })
 

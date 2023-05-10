@@ -1,6 +1,7 @@
 <!--index.wxml-->
 <view>
-  <van-tabs>
+  <div class="container">
+    <van-tabs>
     <van-tab name="cartoon" title="二次元">
       <div class="image-list">
           <van-image 
@@ -68,4 +69,6 @@
       </div>
     </van-tab>
   </van-tabs>
+  <van-divider />
+  </div>
 </view>

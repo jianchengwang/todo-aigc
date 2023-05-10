@@ -1,7 +1,7 @@
 <template>
   <div>
     <TabView>
-        <TabPanel header="Stable-Diffusion">
+        <TabPanel header="StableDiffusion">
           <StableDiffusion />
         </TabPanel>
         <TabPanel header="ChatGpt">

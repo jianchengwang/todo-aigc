@@ -6,17 +6,12 @@ Page({
    */
   data: {
     activeNames: [],
-    text2ImageParams: {
-      prompt: "1 gril, portrait, upper body, sailor suit",
-      seed: -1,
-      sampler_name: "Euler a",
-      batch_size: 4,
-      steps: 32,
-      cfg_scale: 7,
-      width: 512,
-      height: 512,
-      sampler_index: "Euler"
-    },
+    text2ImageParamsPrompt: "1 gril, portrait, upper body, sailor suit",
+    text2ImageParamsSeed: -1,
+    text2ImageParamsBatchSize: 4,
+    text2ImageParamsSteps: 32,
+    text2ImageParamsWidth: 512,
+    text2ImageParamsHeight: 512,
     loading: false,
     result: {
       images: []
@@ -30,21 +25,32 @@ Page({
   },
 
   onSubmit() {
-    const thant = this;
-    thant.setData({loading: true})
+    const that = this;
+    that.setData({loading: true})
     wx.request({
       url: 'http://localhost:4000/api/text2Image',
       method: 'POST',
-      data: thant.data.text2ImageParams,
+      data: {
+        "prompt": that.data.text2ImageParamsPrompt,
+        "seed": that.data.text2ImageParamsSeed,
+        "batch_size": that.data.text2ImageParamsBatchSize,
+        "steps": that.data.text2ImageParamsSteps,
+        "width": that.data.text2ImageParamsWidth,
+        "height": that.data.text2ImageParamsHeight,
+        "sampler_index": "Euler",
+        "sampler_name": "Euler a",
+        "cfg_scale": 7,
+        "negative_prompt": "nsfw",
+      },
       success(res) {
         console.log(res.data) // 在控制台中输出接口返回的数据
         // for(let i=0; i<res.data.result.images.length; i++) {
         //   res.data.result.images[i] = res.data.result.images[i].replace(/[\r\n]/g, '')
         // }
-        thant.setData({loading: false, result: res.data.result})
+        that.setData({loading: false, result: res.data.result})
       },
       fail() {
-        thant.setData({loading: false})
+        that.setData({loading: false})
       }
     })    
   },
