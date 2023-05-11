@@ -28,7 +28,7 @@ Page({
     const that = this;
     that.setData({loading: true})
     wx.request({
-      url: 'http://localhost:4000/api/text2Image',
+      url: 'http://101.34.12.71:7862/sdapi/v1/text2image',
       method: 'POST',
       data: {
         "prompt": that.data.text2ImageParamsPrompt,

@@ -2,7 +2,7 @@
 <view>
   <div class="container">
     <van-tabs>
-    <van-tab name="cartoon" title="二次元">
+    <van-tab name="cartoon" title="最新发布">
       <div class="image-list">
           <van-image 
           lazy-load
@@ -22,9 +22,18 @@
           wx:for-item="index"
           src="https://dy.lixiaoqian.com/img/015{{index}}.jpg" 
           />
+          <van-image
+          lazy-load
+          width="100%"
+          height="auto"
+          fit="widthFix"
+          wx:for="{{ 10 }}" 
+          wx:for-item="index"
+          src="https://dy.lixiaoqian.com/img/012{{index}}.jpg"
+        />
       </div>
     </van-tab>
-    <van-tab name="chibi" title="Q版">
+    <van-tab name="chibi" title="最多点赞">
       <div class="image-list">
           <van-image
           lazy-load
@@ -43,19 +52,6 @@
           wx:for="{{ 10 }}" 
           wx:for-item="index"
           src="https://dy.lixiaoqian.com/img/013{{index}}.jpg"
-        />
-      </div>
-    </van-tab>
-    <van-tab name="chibi" title="古风">
-      <div class="image-list">
-          <van-image
-          lazy-load
-          width="100%"
-          height="auto"
-          fit="widthFix"
-          wx:for="{{ 10 }}" 
-          wx:for-item="index"
-          src="https://dy.lixiaoqian.com/img/012{{index}}.jpg"
         />
         <van-image
           lazy-load
