@@ -6,18 +6,18 @@
       <div class="image-list">
           <van-image 
           lazy-load
-          width="9rem"
-          height="9rem" 
-          fit="contain"
+          width="100%"
+          height="auto"
+          fit="widthFix"
           wx:for="{{ 4 }}" 
           wx:for-item="index"
           src="https://dy.lixiaoqian.com/img/016{{index}}.jpg"
         />
         <van-image 
           lazy-load
-          width="9rem"
-          height="9rem" 
-          fit="contain"
+          width="100%"
+          height="auto"
+          fit="widthFix"
           wx:for="{{ 10 }}" 
           wx:for-item="index"
           src="https://dy.lixiaoqian.com/img/015{{index}}.jpg" 
@@ -28,18 +28,18 @@
       <div class="image-list">
           <van-image
           lazy-load
-          width="9rem"
-          height="9rem" 
-          fit="contain"
+          width="100%"
+          height="auto"
+          fit="widthFix"
           wx:for="{{ 10 }}" 
           wx:for-item="index"
           src="https://dy.lixiaoqian.com/img/014{{index}}.jpg"
         />
         <van-image
           lazy-load
-          width="9rem"
-          height="9rem" 
-          fit="contain"
+          width="100%"
+          height="auto"
+          fit="widthFix"
           wx:for="{{ 10 }}" 
           wx:for-item="index"
           src="https://dy.lixiaoqian.com/img/013{{index}}.jpg"
@@ -50,18 +50,18 @@
       <div class="image-list">
           <van-image
           lazy-load
-          width="9rem"
-          height="9rem" 
-          fit="contain"
+          width="100%"
+          height="auto"
+          fit="widthFix"
           wx:for="{{ 10 }}" 
           wx:for-item="index"
           src="https://dy.lixiaoqian.com/img/012{{index}}.jpg"
         />
         <van-image
           lazy-load
-          width="9rem"
-          height="9rem" 
-          fit="contain"
+          width="100%"
+          height="auto"
+          fit="widthFix"
           wx:for="{{ 10 }}" 
           wx:for-item="index"
           src="https://dy.lixiaoqian.com/img/011{{index}}.jpg"

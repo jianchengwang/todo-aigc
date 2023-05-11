@@ -44,7 +44,7 @@
   
   const sendRequest = async function() {
     try {
-        const request = await fetch("http://localhost:4000/api/chatGpt", {
+        const request = await fetch("http://101.34.12.71:7862/api/chatGpt", {
             method: "POST",
             body: JSON.stringify(
               {

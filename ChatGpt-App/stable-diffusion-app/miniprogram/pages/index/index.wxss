@@ -1,14 +1,14 @@
 /**index.wxss**/
 .image-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 1rem;
+  margin: 0.5rem;
   margin-bottom: 5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: 0.5rem;
+  grid-column-gap: 0.5rem;
+  grid-auto-flow: row dense;
 }
 
 .image-list van-image {
-  width: calc(50% - 2px);
-  margin-right: 2px;
-  margin-bottom: 2px;
+  height: auto;
 }

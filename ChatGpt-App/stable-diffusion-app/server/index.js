@@ -59,7 +59,7 @@ app.listen(PORT, () => {
 
 async function sd_models() {
   try {
-    const request = await axios.get('http://101.34.12.71:7861/sdapi/v1/sd-models')
+    const request = await axios.get('http://127.0.0.1:7861/sdapi/v1/sd-models')
     let result = await request.data
     return result
   } catch (error) {
@@ -69,7 +69,7 @@ async function sd_models() {
 
 async function sd_options_post(reqBody) {
   try {
-    const request = await axios.post('http://101.34.12.71:7861/sdapi/v1/options', reqBody)
+    const request = await axios.post('http://127.0.0.1:7861/sdapi/v1/options', reqBody)
     let result = await request.data
     return result
   } catch (error) {
@@ -79,7 +79,7 @@ async function sd_options_post(reqBody) {
 
 async function sd_options_get() {
   try {
-    const request = await axios.get('http://101.34.12.71:7861/sdapi/v1/options')
+    const request = await axios.get('http://127.0.0.1:7861/sdapi/v1/options')
     let result = await request.data
     return result
   } catch (error) {
@@ -90,7 +90,7 @@ async function sd_options_get() {
 
 async function sd_text2Image(reqBody) {
   try {
-    const request = await axios.post('http://101.34.12.71:7861/sdapi/v1/txt2img', reqBody)
+    const request = await axios.post('http://127.0.0.1:7861/sdapi/v1/txt2img', reqBody)
     let result = await request.data
     return result
   } catch (error) {
@@ -100,7 +100,7 @@ async function sd_text2Image(reqBody) {
 
 async function sd_image2Image(reqBody) {
   try {
-    const request = await axios.post('http://101.34.12.71:7861/sdapi/v1/img2img', reqBody)
+    const request = await axios.post('http://127.0.0.1:7861/sdapi/v1/img2img', reqBody)
     let result = await request.data
     return result
   } catch (error) {
@@ -118,7 +118,7 @@ async function chatGpt_second(prompt, conversationId, parentMessageId) {
       // });
       // https://chat.openai.com/api/auth/session
       const chatgptApi = new ChatGPTUnofficialProxyAPI({
-        accessToken: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik1UaEVOVUpHTkVNMVFURTRNMEZCTWpkQ05UZzVNRFUxUlRVd1FVSkRNRU13UmtGRVFrRXpSZyJ9.eyJodHRwczovL2FwaS5vcGVuYWkuY29tL3Byb2ZpbGUiOnsiZW1haWwiOiJqaWFuY2hlbmd3YW5nODBAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWV9LCJodHRwczovL2FwaS5vcGVuYWkuY29tL2F1dGgiOnsidXNlcl9pZCI6InVzZXItM3lzc05pSGdsOU4xelFlVTEyTjMwVVVXIn0sImlzcyI6Imh0dHBzOi8vYXV0aDAub3BlbmFpLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDExNTU5MTIwNjgyODQ4ODg5MDc5NiIsImF1ZCI6WyJodHRwczovL2FwaS5vcGVuYWkuY29tL3YxIiwiaHR0cHM6Ly9vcGVuYWkub3BlbmFpLmF1dGgwYXBwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2ODI1OTI3NTQsImV4cCI6MTY4MzgwMjM1NCwiYXpwIjoiVGRKSWNiZTE2V29USHROOTVueXl3aDVFNHlPbzZJdEciLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIG1vZGVsLnJlYWQgbW9kZWwucmVxdWVzdCBvcmdhbml6YXRpb24ucmVhZCBvZmZsaW5lX2FjY2VzcyJ9.pKiJxl53nsjiSNbhaDlWj8wkuuCtNXcI9-wJSHte6EX7gTL3Y8sOKGgr5mKFiuHxxjvSgoDPDncyK2HiVBZjR6FteYj2gJ6ulXXE7p-1tlEDb6HD1ULWSbu8zqbt-QtKtoKbEyRwtbrj_Iv2dUXbUNimN8WxkU2SWgRMsMoqrRuHzeCJrU4ywrmpXCivYe1MvOuHoRewAYn2GsTAzYq_Cc8vEFKGWKQYbj0UZZiiwxeBCuxJ2Xs0Yk4aOmVWDP_rywXFHjV45kHjLt8PrHYf7mLZibrJOD1MD9B_37tVL0WWu4jVy8Qx7Y3X4zkENqVNYFPi6s4iu5AafpGXfKeVXA',        
+        accessToken: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik1UaEVOVUpHTkVNMVFURTRNMEZCTWpkQ05UZzVNRFUxUlRVd1FVSkRNRU13UmtGRVFrRXpSZyJ9.eyJodHRwczovL2FwaS5vcGVuYWkuY29tL3Byb2ZpbGUiOnsiZW1haWwiOiJqaWFuY2hlbmd3YW5nODBAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWV9LCJodHRwczovL2FwaS5vcGVuYWkuY29tL2F1dGgiOnsidXNlcl9pZCI6InVzZXItM3lzc05pSGdsOU4xelFlVTEyTjMwVVVXIn0sImlzcyI6Imh0dHBzOi8vYXV0aDAub3BlbmFpLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDExNTU5MTIwNjgyODQ4ODg5MDc5NiIsImF1ZCI6WyJodHRwczovL2FwaS5vcGVuYWkuY29tL3YxIiwiaHR0cHM6Ly9vcGVuYWkub3BlbmFpLmF1dGgwYXBwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2ODM0MTk5MDYsImV4cCI6MTY4NDYyOTUwNiwiYXpwIjoiVGRKSWNiZTE2V29USHROOTVueXl3aDVFNHlPbzZJdEciLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIG1vZGVsLnJlYWQgbW9kZWwucmVxdWVzdCBvcmdhbml6YXRpb24ucmVhZCBvZmZsaW5lX2FjY2VzcyJ9.J-lZRxUxj0d_d9CDbycy8IAeFv6981J3-yAqlu8kUy0Zq3RLN57MAZsgoe688y3hu831TpFX4-ihEp01JTaQP8cUlOGSbpLhVRphlAOuzKw3ILk6Wr3hjbI-Ffchesis1BQYV30ydYGYKMxT7AHK8-LtvMlg-x9o8SVwl2oNmVBlaK2UJQXPqP2T4oKrQ9QQJNFbFMrcgGaqHLMZZ7W2dSz-GG2gGX4g3r9sIpf-o9BO-bu9b6y1Mp4QxvdumaQLlNhWZC_nmLhPS3rcXhv3rkpn1Ovx-vSDWjbJvduejBU-1LhVBUO96O5HEYF2z9NjiKWXcFTFoGVmaYtwIaFbDQ',
         apiReverseProxyUrl: 'https://api.pawan.krd/backend-api/conversation',
       })
 

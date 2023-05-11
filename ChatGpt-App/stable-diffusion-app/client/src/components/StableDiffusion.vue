@@ -66,7 +66,7 @@
       </div>
       <div v-else class="max-w-full">
         <div v-if="result.images.length > 0" class="grid">
-          <div v-for="(item, index) in result.images" :key="index" class="col">
+          <div v-for="(item, index) in result.images" :key="index" class="col-2">
             <PImage :src="'data:image/png;base64,' + item" alt="Image" width="250" preview />
           </div>
         </div>
@@ -96,7 +96,7 @@ const text2ImageParams = reactive({
   "prompt": "1 gril, student,sailor suit, short hair, cute smile",
   "seed": -1,
   "sampler_name": "Euler a",
-  "batch_size": 4,
+  "batch_size": 2,
   "steps": 32,
   "cfg_scale": 7,
   "width": 512,
@@ -112,7 +112,7 @@ const result = ref({
 const uploadImageBase64 = ref("");
 
 const fetchOptions = function() {
-  fetch("http://127.0.0.1:4000/sdapi/v1/options")
+  fetch("http://101.34.12.71:7862/sdapi/v1/options")
     .then((res) => res.json())
     .then((res) => {
       sd_model_checkpoint.value = res.result.sd_model_checkpoint;
@@ -121,7 +121,7 @@ const fetchOptions = function() {
 }
 
 const fetchModels = function() {
-  fetch("http://127.0.0.1:4000/sdapi/v1/sd_models")
+  fetch("http://101.34.12.71:7862/sdapi/v1/sd_models")
     .then((res) => res.json())
     .then((res) => {
       models.value = res.result;
@@ -146,7 +146,7 @@ const changeModel = function() {
     "sd_model_checkpoint": sd_model_checkpoint.value,
     "CLIP_stop_at_last_layers": 2
   }
-  fetch("http://127.0.0.1:4000/sdapi/v1/options", {
+  fetch("http://101.34.12.71:7862/sdapi/v1/options", {
     method: "POST",
     body: JSON.stringify(option_payload),
     headers: {
@@ -185,17 +185,17 @@ const sendRequest = async function() {
         requestBody.prompt = requestBody.prompt + ",(masterpiece, best quality:1.2), (ultra detailed), (illustration), (distinct_image), (intricate_details), (delicate illustration)";
         requestBody.negative_prompt = requestBody.negative_prompt + ",nsfw,(worst quality:1.4), (low quality:1.4), EasyNegative, (multiple Views:1.5), (multiple girls:1.5), (extra hands, extra fingers, extra arms, extra legs), cropped hands, extra digit, fewer digit, (bad hands:1.5), (bad antomy:1.5), (fused anatomy), (blurry:1.3), (artist name:1.5), (censored:1.4), (watermark:1.5), (text:1.5), (signature:1.5), (4 fingers, 3 fingers, 2 fingers, 3 legs, 4 legs, 3 hands, 4hands), (fewer than 5 fingers)";
       }
-      let fetchUrl = "http://127.0.0.1:4000/sdapi/v1/text2image";
+      let fetchUrl = "http://101.34.12.71:7862/sdapi/v1/text2image";
       if(image2image.value) {
         requestBody.init_images = [uploadImageBase64.value];
-        fetchUrl = "http://127.0.0.1:4000/sdapi/v1/image2image";
+        fetchUrl = "http://101.34.12.71:7862/sdapi/v1/image2image";
       }
       const request = await fetch(fetchUrl, {
           method: "POST",
           body: JSON.stringify(requestBody),
           headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
+            Accept: "application/json",
+            "Content-Type": "application/json",
           },
           mode: 'cors'
       });
