@@ -1,2 +1,18 @@
 <!--pages/mine/index.wxml-->
-<text>待开发</text>
+<view>
+  <van-row>
+    <van-col span="8">
+      <div wx:if="{{userInfo.openid}}">
+        <van-image
+          round
+          width="4rem"
+          height="4rem"
+          src="{{userInfo.avatarUrl}}"
+        />
+        <span>{{userInfo.nickname}}</span>
+      </div>
+      <div wx:if="{{!userInfo.openid}}"><van-button type="default" bind:getuserinfo="doLogin">点击登录</van-button></div>
+    </van-col>
+    <van-col span="8"></van-col>
+</van-row>
+</view>

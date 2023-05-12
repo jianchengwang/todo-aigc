@@ -1,5 +1,5 @@
 <!--pages/gc/index.wxml-->
-<div class="container">
+<view class="container">
   <van-cell-group title="小主，请施加咒语">
     <van-field
       model:value="{{ text2ImageParamsPrompt }}"
@@ -55,4 +55,4 @@
     <van-divider />
   </div>
 
-</div>
+</view>

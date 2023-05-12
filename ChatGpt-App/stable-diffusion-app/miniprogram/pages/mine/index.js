@@ -1,18 +1,35 @@
 // pages/mine/index.js
+const userApi = require('../../api/functionApi.js')
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    userInfo: {
+      openid: '',
+      nickname: '',
+      avatarUrl: ''
+    }
+  },
 
+  async doLogin(event) {
+    console.info(event)
+    let that = this
+    let userInfo = await userApi.getUserInfo()
+    app.globalData.userInfo = userInfo
+    that.data.userInfo = userInfo
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    const globalData = app.globalData;
+    this.setData({
+      userInfo: globalData.userInfo
+    })
   },
 
   /**
